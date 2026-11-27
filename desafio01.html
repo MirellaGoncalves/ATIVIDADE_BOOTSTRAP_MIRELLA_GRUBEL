@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafio 01 - Cartão de Visitas Digital</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100" style="background-color: #f7f5fa;">
+
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #8c7ae6;">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">💜 DS • Bootstrap 5</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPortifolio">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuPortifolio">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link active" href="desafio01.html">Desafio 01</a></li>
+          <li class="nav-item"><a class="nav-link" href="desafio02.html">Desafio 02</a></li>
+          <li class="nav-item"><a class="nav-link" href="desafio03.html">Desafio 03</a></li>
+          <li class="nav-item"><a class="nav-link" href="desafio04.html">Desafio 04</a></li>
+          <li class="nav-item"><a class="nav-link" href="desafio05.html">Desafio 05</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-auto py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow border-0 p-4 text-center" style="background-color: #fff; border-radius: 20px;">
+          <div class="mb-3">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80" alt="Foto de Perfil Carlos Mendes" class="rounded-circle border border-3 border-light mx-auto shadow-sm object-fit-cover" width="120" height="120">
+          </div>
+          <h3 class="fw-bold text-dark">Carlos Mendes</h3>
+          <p class="text-muted mb-2">Arquiteto & Urbanista</p>
+          <span class="badge text-white mb-3 rounded-pill py-2" style="background-color: #8c7ae6;">Projetos Sustentáveis</span>
+          <p class="small text-muted mb-4">Transformando espaços e criando soluções modernas e funcionais para o seu dia a dia em Campo Largo e região.</p>
+          
+          <div class="d-grid gap-2">
+            <a href="https://wa.me/5541999999999?text=Olá!%20Vi%20seu%20cartão%20digital." target="_blank" class="btn text-white rounded-pill" style="background-color: #8c7ae6;">
+              💬 Abrir WhatsApp Direto
+            </a>
+            <button class="btn btn-outline-dark rounded-pill" onclick="copiarEmail()">
+              📋 Copiar E-mail
+            </button>
+            <button class="btn btn-outline-secondary rounded-pill" onclick="baixarVCard()">
+              💾 Salvar na Agenda (.vcf)
+            </button>
+          </div>
+          <div id="feedbackContato" class="mt-2 small text-success fw-bold d-none">
+            ✨ E-mail copiado com sucesso!
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-dark text-white-50 text-center py-3 mt-auto">
+    <div class="container"><small>Desenvolvido por [PREENCHA SEU NOME COMPLETO AQUI] • SESI/SENAI Campo Largo</small></div>
+  </footer>
+
+  <script>
+    function copiarEmail() {
+      navigator.clipboard.writeText("contato@arquiteto.com").then(() => {
+        const msg = document.getElementById("feedbackContato");
+        msg.classList.remove("d-none");
+        setTimeout(() => msg.classList.add("d-none"), 3000);
+      });
+    }
+
+    function baixarVCard() {
+      const vcard = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "N:Mendes;Carlos;;;",
+        "FN:Carlos Mendes - Arquiteto",
+        "TEL;TYPE=CELL:+5541999999999",
+        "EMAIL:contato@arquiteto.com",
+        "END:VCARD"
+      ].join("\n");
+
+      const blob = new Blob([vcard], { type: "text/vcard" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Carlos_Mendes_Arquiteto.vcf";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
